@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Tue Sep 10 00:09:29 2024
+# Process ID: 10108
+# Current directory: C:/Users/Miku/Documents/GitHub/ASIC_Lab/Lab1/Flowing light
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent23740 C:\Users\Miku\Documents\GitHub\ASIC_Lab\Lab1\Flowing light\Flowing light.xpr
+# Log file: C:/Users/Miku/Documents/GitHub/ASIC_Lab/Lab1/Flowing light/vivado.log
+# Journal file: C:/Users/Miku/Documents/GitHub/ASIC_Lab/Lab1/Flowing light\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/Miku/Documents/GitHub/ASIC_Lab/Lab1/Flowing light/Flowing light.xpr}
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_flowled.tcl
+run all
+run all
+run 10 s
+launch_runs synth_1 -jobs 10
+wait_on_run synth_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+close_sim
