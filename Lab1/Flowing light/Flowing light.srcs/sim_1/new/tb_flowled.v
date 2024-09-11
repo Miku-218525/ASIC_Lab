@@ -8,6 +8,6 @@ flowled flowled(
     .sys_rst_n      (rst),
     .led            (led)
     );
-initial # 20 rst=1;//20ns后复位
+initial # 20 rst=1;   //20ns后复位
 always # 5 clk = ~clk;//时钟周期：10ns
 endmodule

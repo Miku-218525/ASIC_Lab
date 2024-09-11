@@ -17,7 +17,8 @@ always @(posedge sys_clk or negedge sys_rst_n) begin
     if (!sys_rst_n)
         counter1 <= 32'd0;
     else if(!led_control)
-            if (counter1 < 32'd200_000_000)//200000000个时钟周期,2s
+            if (counter1 < (32'd200_000_000-1'd1))//200000000个时钟周期,2s
+                                                  //减1的原因：（1）counter1 <= 0放在循环中会多一个周期，但这个周期里边应该放的是counter1 由0变为1，这样才能保证时长为1s。
                 counter1 <= counter1 + 1'b1;
             else
                 counter1 <= 32'd0;
@@ -30,7 +31,7 @@ always @ (posedge sys_clk or negedge sys_rst_n) begin
     if(!sys_rst_n)
         counter2<=32'd0;
     else if(led_control)
-            if (counter2 < 32'd150_000_000)//1.5s
+            if (counter2 < (32'd150_000_000-1'd1))//1.5s
                 counter2 <= counter2 + 1'b1;
             else
                 counter2 <= 32'd0;
@@ -65,7 +66,7 @@ always @(posedge sys_clk or negedge sys_rst_n) begin
     if(!sys_rst_n)
         led1<=8'b00000001;
     else if (!led_control) begin
-            if (counter1 == 32'd200_000_000) 
+            if (counter1 == (32'd200_000_000-1'd1)) 
                 led1 <= {led1[6:0],led1[7]};
             else 
                 led1 <= led1;
@@ -78,7 +79,7 @@ always @(posedge sys_clk or negedge sys_rst_n) begin
     if(!sys_rst_n)
         led2<=8'b00000000;
     else if (led_control) begin
-            if (counter2 == 32'd150_000_000) 
+            if (counter2 == (32'd150_000_000-1'd1)) 
                 led2 <= {led2[1:0],led2[7:2]}; 
             else 
                 led2 <= led2;
